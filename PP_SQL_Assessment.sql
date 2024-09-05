@@ -57,14 +57,14 @@ LIMIT 5;
 
 
 ---Q4: Determine each user's contribution (by percentage) to the total entry amount for each player
- ---Note: The final output should include 3 columns: player_name, user_id, and share.
- ---Note: You do not need to format the final column with a percentage sign
-### Used PARTITION BY window function to sum entry amounts by player.
+---Note: The final output should include 3 columns: player_name, user_id, and share.
+---Note: You do not need to format the final column with a percentage sign
+### Used PARTITION BY window function to sum entry amounts by player across users.
 ### Divided total of each user's contribution to a player by total user contributions to a player to calculate share.
 
 SELECT player AS player_name,
   user_id,
-  ROUND((SUM(entry_amount) / SUM(SUM(entry_amount)) OVER (PARTITION BY player)) * 100, 2) AS share
+  ROUND((SUM(entry_amount) / SUM(entry_amount) OVER (PARTITION BY player)) * 100, 2) AS share
 FROM `PrizePicks_DB.entry_data`
 GROUP BY player, user_id
 ORDER BY player_name, user_id;
