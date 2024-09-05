@@ -1,6 +1,6 @@
 ### 3298 unique user_ids
 ### 189 unique player names
-### 'entry_data' table only contains data from September, 2020. Still used date functions to simulate proper use for expanded dataset.
+### 'entry_data' table only contains data from September, 2020. Still used date functions to simulate proper use for an expanded dataset.
 
 
 --- Q1: What is the total entry amount for all members who signed up in September 2020?
@@ -45,7 +45,7 @@ ORDER BY
 
 ---Q3: Create an ordered list of the top 5 most popular players (by total entry amount) and their league in the month of September
 2020
-### Summed entry amount and ordered in descending order, grouped by player and league, limited results to only query top 5.
+### Ordered total entry amount in descending order, limited results to only query top 5.
 
 SELECT player,
   league
@@ -59,8 +59,8 @@ LIMIT 5;
 ---Q4: Determine each user's contribution (by percentage) to the total entry amount for each player
  ---Note: The final output should include 3 columns: player_name, user_id, and share.
  ---Note: You do not need to format the final column with a percentage sign
-### Used PARTITION BY window function to sum entry amounts by player
-### Divided total of each user's contribution to a player by total user contribution to a player to calculate share.
+### Used PARTITION BY window function to sum entry amounts by player.
+### Divided total of each user's contribution to a player by total user contributions to a player to calculate share.
 
 SELECT player AS player_name,
   user_id,
